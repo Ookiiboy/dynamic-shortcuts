@@ -29,7 +29,7 @@ in {
     # pkg -> {shortcutValue}
     packageToShortcut = package: let
       fallbackName = (parseDrvName package.name).name;
-      meta = (parseDrvName package.name).meta or {};
+      meta = package.meta or {};
     in {
       name = "${meta.mainProgram or fallbackName}.desktop";
       value = {
