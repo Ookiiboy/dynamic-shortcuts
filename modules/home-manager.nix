@@ -52,8 +52,8 @@ in {
     lib.mkIf cfg.enable {
       home.file = listToAttrs (map
         (app: {
-          inherit app;
           name = ".local/share/applications/${app.name}";
+          inherit (app) value;
         })
         shortcutsList);
     };
