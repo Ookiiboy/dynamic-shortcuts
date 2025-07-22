@@ -68,9 +68,7 @@
           ${ignoreBoy.lib.${system}.gitignore ignoreSettings}
         '';
 
-        buildInputs = with pkgs;
-          [libnotify]
-          ++ self.checks.${system}.pre-commit-check.enabledPackages;
+        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
       };
     });
   };
