@@ -42,7 +42,7 @@ in {
           Exec=sh -c '${pkgs.libnotify}/bin/notify-send "Launching ${meta.name or fallbackName}..." && nix run nixpkgs#${fallbackName}'
           Icon=${meta.icon or meta.mainProgram or fallbackName}
           Terminal=false
-          Categories=Dynamic Shortcuts;
+          Categories=Dynamic Shortcuts
         '';
       };
     };
