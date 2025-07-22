@@ -67,7 +67,6 @@
           ${self.checks.${system}.pre-commit-check.shellHook}
           ${ignoreBoy.lib.${system}.gitignore ignoreSettings}
         '';
-
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
       };
     });
