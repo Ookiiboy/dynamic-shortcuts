@@ -27,9 +27,9 @@ in {
   config = let
     inherit (builtins) parseDrvName listToAttrs map;
     # pkg -> {shortcutValue}
-    packageToShortcut = package: let
-      fallbackName = (parseDrvName package.name).name;
-      meta = package.meta or {};
+    packageToShortcut = pkg: let
+      fallbackName = (parseDrvName pkg.name).name;
+      meta = pkg.meta or {};
     in {
       name = "${meta.mainProgram or fallbackName}.desktop";
       value = {
@@ -39,10 +39,10 @@ in {
           Type=Application
           Name=${fallbackName}
           Comment=${meta.description or "Run ${fallbackName}"}
-          Exec=sh -c '${pkgs.libnotify}/bin/notify-send "Launching ${meta.name or fallbackName}..." && nix run nixpkgs#${fallbackName}'
+          Exec=sh -c '${pkgs.libnotify}/bin/notify-send "Launching ${meta.name or fallbackName}..." && ${pkgs.nix}/bin/nix run nixpkgs#${fallbackName}'
           Icon=${meta.icon or meta.mainProgram or fallbackName}
           Terminal=false
-          Categories=Dynamic Shortcuts
+          Categories=Dynamic Shortcut
         '';
       };
     };
